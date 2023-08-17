@@ -8,17 +8,19 @@ body {
   flex-wrap: nowrap;
 }
 
-.image-container {
+.poster {
   position: relative;
   transition: transform 0.2s;
+  height: 432px;
+  width: 330px;
 }
 
-.image-container:hover {
+.poster:hover {
   cursor: pointer;
   transform: scale(1.1);
 }
 
-.image-container:hover .overlay {
+.poster:hover .overlay {
   opacity: 1;
 }
 
@@ -34,7 +36,3 @@ body {
   text-align: center;
 }
 
-.poster {
-  height: 432px;
-  width: 330px;
-}

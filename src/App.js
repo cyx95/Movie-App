@@ -4,10 +4,12 @@ import "./App.css";
 import MovieList from "./components/MovieList";
 import MovieListHeading from "./components/MovieListHeading";
 import SearchBox from "./components/SearchBox";
+import AddFavorite from "./components/AddToFavorites";
 
 const App = () => {
   const [movies, setMovies] = useState([]);
   const [searchValue, setSearchValue] = useState("");
+  const [favorites, setFavorites] = useState([]);
 
   const fetchMovies = async (searchValue) => {
     const res = await fetch(
@@ -20,6 +22,11 @@ const App = () => {
     }
   };
 
+  const addFavoriteMovie = (movie) => {
+    const newFavoriteList = [...favorites, movie]
+    setFavorites(newFavoriteList);
+  }
+
   useEffect(() => {
     fetchMovies(searchValue);
   }, [searchValue]);
@@ -31,7 +38,7 @@ const App = () => {
         <SearchBox searchValue={searchValue} setSearchValue={setSearchValue} />
       </div>
       <div className="row">
-        <MovieList movies={movies} />
+        <MovieList movies={movies} favoriteComponent={AddFavorite} handleFavoriteClick={addFavoriteMovie}/>
       </div>
     </div>
   );
