@@ -23,9 +23,25 @@ const App = () => {
     }
   };
 
+  useEffect(() => {
+    fetchMovies(searchValue);
+  }, [searchValue]);
+
+  useEffect(() => {
+    const movieFavorites = JSON.parse(
+      localStorage.getItem("react-movie-app-favorites")
+    );
+    setFavorites(movieFavorites);
+  }, []);
+
+  const saveToLocalStorage = (items) => {
+    localStorage.setItem("react-movie-app-favorites", JSON.stringify(items));
+  };
+
   const addFavoriteMovie = (movie) => {
     const newFavoriteList = [...favorites, movie];
     setFavorites(newFavoriteList);
+    saveToLocalStorage(newFavoriteList);
   };
 
   const removeFavoriteMovie = (movie) => {
@@ -33,12 +49,8 @@ const App = () => {
       (favorite) => favorite.imdbID !== movie.imdbID
     );
     setFavorites(newFavoriteList);
-    console.log('im being clicked')
+    saveToLocalStorage(newFavoriteList);
   };
-
-  useEffect(() => {
-    fetchMovies(searchValue);
-  }, [searchValue]);
 
   return (
     <div className="container-fluid movie-app">
