@@ -6,11 +6,21 @@ import MovieListHeading from "./components/MovieListHeading";
 import SearchBox from "./components/SearchBox";
 import AddFavorite from "./components/AddToFavorites";
 import RemoveFavorites from "./components/RemoveFavorites";
+import MovieDetails from "./components/MovieDetails";
 
 const App = () => {
   const [movies, setMovies] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   const [favorites, setFavorites] = useState([]);
+  const [selectedMovie, setSelectedMovie] = useState(null);
+
+  const fetchAllMovies = async () => {
+    const res = await fetch("http://www.omdbapi.com/?s=comedy&apikey=7dd11a66");
+    const data = await res.json();
+    if (data.Search) {
+      setMovies(data.Search);
+    }
+  };
 
   const fetchMovies = async (searchValue) => {
     const res = await fetch(
@@ -24,6 +34,10 @@ const App = () => {
   };
 
   useEffect(() => {
+    fetchAllMovies();
+  }, []);
+
+  useEffect(() => {
     fetchMovies(searchValue);
   }, [searchValue]);
 
@@ -35,6 +49,10 @@ const App = () => {
       setFavorites(movieFavorites);
     }
   }, []);
+
+  const movieDetails = (movie) => {
+    setSelectedMovie(movie);
+  };
 
   const saveToLocalStorage = (items) => {
     localStorage.setItem("react-movie-app-favorites", JSON.stringify(items));
@@ -60,9 +78,12 @@ const App = () => {
         <MovieListHeading heading="Movies" />
         <SearchBox searchValue={searchValue} setSearchValue={setSearchValue} />
       </div>
+      <div>{selectedMovie && <MovieDetails movie={selectedMovie} />}</div>
+
       <div className="row">
         <MovieList
           movies={movies}
+          movieDetails={movieDetails}
           favoriteComponent={AddFavorite}
           handleFavoriteClick={addFavoriteMovie}
         />
