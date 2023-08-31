@@ -37,7 +37,7 @@ const MovieDetails = (props) => {
       <div className="col-md-5">
         <div className="movie-details">
           <h2>{props.movie.Title}</h2>
-          <p>{movieDetails.Year}</p>
+          <p>{movieDetails.Year} {props.movie.Type.charAt(0).toUpperCase() + props.movie.Type.slice(1)}</p>
           <p>Cast: {movieDetails.Actors}</p>
           <p>Genre: {movieDetails.Genre}</p>
           <p>{movieDetails.Plot}</p>
