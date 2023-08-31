@@ -36,10 +36,22 @@ body {
   text-align: center;
 }
 
+.image {
+  padding-left: 300px;
+  transition: transform 0.2s;
+  height: 432px;
+  width: 330px;
+}
 
+.image:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.image:hover .overlay {
+  opacity: 1;
+}
 
 .movie-details {
-  margin-left: 50;
   padding: 20px;
-  border: 2px solid red;
 }

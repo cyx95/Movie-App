@@ -22,23 +22,26 @@ const MovieDetails = (props) => {
   }, [props.movie.imdbID]);
 
   return (
-    <div className="movie-container">
-      <div className="poster d-flex justify-content-start m-3">
-        <img src={props.movie.Poster} alt={props.movie.Type}></img>
-        <div
-          onClick={() => props.handleFavoriteClick(props.movie)}
-          className="overlay d-flex align-items-center justify-content-center"
-        >
-          <FavoriteComponent />
+    <div className="row">
+      <div className="col-md-5">
+        <div className="image d-flex justify-content-start m-3">
+          <img src={props.movie.Poster} alt={props.movie.Type}></img>
+          <div
+            onClick={() => props.handleFavoriteClick(props.movie)}
+            className="overlay d-flex align-items-center justify-content-center"
+          >
+            <FavoriteComponent />
+          </div>
         </div>
       </div>
-      <div className="movie-details">
-        <h2>{props.movie.Title}</h2>
-        <p>{movieDetails.Year}</p>
-
-        <p>Cast: {movieDetails.Actors}</p>
-        <p>Genre: {movieDetails.Genre}</p>
-        <p>{movieDetails.Plot}</p>
+      <div className="col-md-5">
+        <div className="movie-details">
+          <h2>{props.movie.Title}</h2>
+          <p>{movieDetails.Year}</p>
+          <p>Cast: {movieDetails.Actors}</p>
+          <p>Genre: {movieDetails.Genre}</p>
+          <p>{movieDetails.Plot}</p>
+        </div>
       </div>
     </div>
   );
