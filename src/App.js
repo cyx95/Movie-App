@@ -78,7 +78,16 @@ const App = () => {
         <MovieListHeading heading="Movies" />
         <SearchBox searchValue={searchValue} setSearchValue={setSearchValue} />
       </div>
-      <div>{selectedMovie && <MovieDetails movie={selectedMovie} />}</div>
+      <div>
+        {selectedMovie && (
+          <MovieDetails
+            movie={selectedMovie}
+            movieDetails={movieDetails}
+            favoriteComponent={AddFavorite}
+            handleFavoriteClick={addFavoriteMovie}
+          />
+        )}
+      </div>
 
       <div className="row">
         <MovieList

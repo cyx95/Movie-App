@@ -36,3 +36,10 @@ body {
   text-align: center;
 }
 
+
+
+.movie-details {
+  margin-left: 50;
+  padding: 20px;
+  border: 2px solid red;
+}
