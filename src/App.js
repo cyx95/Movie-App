@@ -17,6 +17,7 @@ const App = () => {
   const fetchAllMovies = async () => {
     const res = await fetch("http://www.omdbapi.com/?s=comedy&apikey=7dd11a66");
     const data = await res.json();
+    console.log('data', data)
     if (data.Search) {
       setMovies(data.Search);
     }
@@ -27,7 +28,6 @@ const App = () => {
       `http://www.omdbapi.com/?s=${searchValue}&apikey=263d22d8`
     );
     const data = await res.json();
-
     if (data.Search) {
       setMovies(data.Search);
     }
@@ -73,12 +73,12 @@ const App = () => {
   };
 
   return (
-    <div className="container-fluid movie-app">
+    <div className="container-fluid movie-app" data-testid="app-component">
       <div className="row d-flex align-items-center mt-4 mb-4">
         <MovieListHeading heading="Movies" />
         <SearchBox searchValue={searchValue} setSearchValue={setSearchValue} />
       </div>
-      <div>
+      <div data-testid="movie-details">
         {selectedMovie && (
           <MovieDetails
             movie={selectedMovie}
@@ -89,7 +89,7 @@ const App = () => {
         )}
       </div>
 
-      <div className="row">
+      <div className="row" data-testid="movie-list">
         <MovieList
           movies={movies}
           movieDetails={movieDetails}
@@ -97,7 +97,7 @@ const App = () => {
           handleFavoriteClick={addFavoriteMovie}
         />
       </div>
-      <div className="row d-flex align-items-cneter mt-4 mb-4">
+      <div className="row d-flex align-items-center mt-4 mb-4">
         <MovieListHeading heading="Favorites" />
       </div>
       <div className="row">

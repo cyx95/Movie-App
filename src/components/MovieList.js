@@ -3,8 +3,6 @@ import React from "react";
 const MovieList = (props) => {
   const FavoriteComponent = props.favoriteComponent;
 
- 
-
   return (
     <>
       {props.movies.map((movie) => (

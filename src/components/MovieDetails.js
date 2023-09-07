@@ -10,7 +10,6 @@ const MovieDetails = (props) => {
       `http://www.omdbapi.com/?i=${props.movie.imdbID}&apikey=263d22d8`
     );
     const data = await res.json();
-    console.log("what is data", data);
     setMovieDetails((prevMovieDetails) => ({
       ...prevMovieDetails,
       ...data,
